@@ -24,9 +24,16 @@ CyberDeck is a script designed for setting up a web pentesting environment. It i
 
 **OR**
 
-2. Run script directly via curl:
+2. Run script directly via CURL:
 ```bash
-curl -o install.sh -L https://raw.githubusercontent.com/Martian1337/CyberDeck/main/install.sh && chmod +x install.sh && ./script.sh
+curl -o install.sh -L https://raw.githubusercontent.com/Martian1337/CyberDeck/main/install.sh && chmod +x install.sh && ./install.sh
+```
+
+**OR**
+
+3. Run script with WGET:
+```bash
+wget https://raw.githubusercontent.com/Martian1337/CyberDeck/main/install.sh -O install.sh && chmod +x install.sh && ./install.sh
 ```
 
 ## Tool List
