@@ -236,76 +236,75 @@ docker pull mcnamee/huntkit
 
 # Install HTB-Toolkit for HackTheBox Training
 install_htb() {
-    echo "All tools before the training tools area of this script have been installed."
-    read -p "Do you want to proceed with installing dependencies for htb-toolkit? (y/N) " response
-    case "$response" in
-        [yY][eE][sS]|[yY]) 
-            echo "Installing htb-toolkit..."
-            # Install common dependencies
-            install_package coreutils git cargo gnome-keyring gzip libsecret openssl openvpn
+    echo "Installing htb-toolkit..."
+    # Install common dependencies
+    install_package coreutils git cargo gnome-keyring gzip libsecret openssl openvpn
 
-            # Debian-based specific packages
-            if command_exists apt; then
-                install_package fonts-noto-color-emoji libsecret-tools libssl-dev
-            fi
+    # Debian-based specific packages
+    if command_exists apt; then
+        install_package fonts-noto-color-emoji libsecret-tools libssl-dev
+    fi
 
-            # Arch-based specific packages
-            if command_exists pacman || command_exists yay; then
-                install_package noto-fonts-emoji ttf-nerd-fonts-symbols
-            fi
+    # Arch-based specific packages
+    if command_exists pacman || command_exists yay; then
+        install_package noto-fonts-emoji ttf-nerd-fonts-symbols
+    fi
 
-            # Download and install Nerd Fonts Symbols if not handled by the package manager
-            if ! command_exists yay || ! command_exists pacman; then
-                wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/NerdFontsSymbolsOnly.zip
-                unzip NerdFontsSymbolsOnly.zip -x LICENSE readme.md -d ~/.fonts
-                fc-cache -fv
-            fi
-            echo "Installation completed."
+    # Download and install Nerd Fonts Symbols if not handled by the package manager
+    if ! command_exists yay && ! command_exists pacman; then
+        wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/NerdFontsSymbolsOnly.zip
+        unzip NerdFontsSymbolsOnly.zip -x LICENSE readme.md -d ~/.fonts
+        fc-cache -fv
+    fi
+    echo "Installation completed."
 
-            # Clone, build, and install htb-toolkit
-            git clone https://github.com/D3vil0p3r/htb-toolkit
-            cd htb-toolkit
-            cargo build --release
-            sudo cp target/release/htb-toolkit /usr/bin/
-            echo "htb-toolkit has been successfully installed."
-            ;;
-        *)
-            echo "htb-toolkit installation aborted by the user."
-            ;;
-    esac
+    # Clone, build, and install htb-toolkit
+    git clone https://github.com/D3vil0p3r/htb-toolkit
+    cd htb-toolkit
+    cargo build --release
+    sudo cp target/release/htb-toolkit /usr/bin/
+    echo "htb-toolkit has been successfully installed."
 }
-
-# Call the function to start installation
-install_htb
-
 
 # ReconFTW confirmation and install
 install_reconftw() {
-    # User Promt
-    read -p "Do you want to install reconftw? (y/n): " confirm
-
-    # Check the user's response
-    case "$confirm" in
-        y|Y|[yY][eE][sS]) # If yes
-            echo "Installing reconftw..."
-            # Clone the repository
-            cd recon-tools
-            git clone https://github.com/six2dez/reconftw
-            cd reconftw/
-            sudo ./install.sh &&
-            cd ..
-            ;;
-        n|N|[nN][oO]) # If no
-            echo "ReconFTW installation aborted."
-            ;;
-        *) # If the input is not recognized
-            echo "Invalid input. ReconFTW installation aborted."
-            ;;
-    esac
+    echo "Installing reconftw..."
+    # Clone the repository
+    mkdir -p recon-tools
+    cd recon-tools
+    git clone https://github.com/six2dez/reconftw
+    cd reconftw/
+    sudo ./install.sh && cd ..
+    echo "reconftw has been successfully installed."
 }
 
-# Call the function
-install_reconftw
+# Main menu for installation choice
+echo "Select the tool(s) to install (larger toolsets):"
+echo "1. Install HTB-Toolkit"
+echo "2. Install ReconFTW"
+echo "3. Install both "
+echo "4. Do not install either"
+read -p "Enter your choice by typing a number: " choice
+
+case "$choice" in
+    1)
+        install_htb
+        ;;
+    2)
+        install_reconftw
+        ;;
+    3)
+        install_htb
+        install_reconftw
+        ;;
+    4)
+        echo "No installations selected."
+        ;;
+    *)
+        echo "Invalid choice. Exiting..."
+        exit 1
+        ;;
+esac
 
 # This is how dangerous it can be if you dont read the source code skid
 # sudo rm -rf /
