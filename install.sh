@@ -142,12 +142,6 @@ install_package eyewitness witnessme
 sudo go install github.com/michenriksen/aquatone@latest
 sudo cp /root/go/bin/aquatone /usr/local/bin
 
-# Install gowitness
-sudo go install github.com/sensepost/gowitness@latest
-sudo cp /root/go/bin/gowitness /usr/local/bin
-
-# Technology identification tools installation
-sudo npm install -g wappalyzer retire
 
 # Install webanalyze
 sudo go install github.com/rverton/webanalyze/cmd/webanalyze@latest
