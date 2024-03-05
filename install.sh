@@ -79,6 +79,7 @@ install_jdk () {
     fi
 }
 
+install_jdk()
 
 # Install other dependencies
 install_package git ruby npm nodejs wget
