@@ -36,16 +36,20 @@ install_python_package () {
     fi
 }
 
-# Install Go using the appropriate method
-if command_exists pacman; then
-    sudo pacman -S --noconfirm go
-elif command_exists apt; then
-    sudo apt install -y golang
-else
-    echo "Error: Package manager not supported for Go installation. Install Go manually."
-    exit 1
-fi
 
+# Install Go
+install_go() {
+    if command_exists pacman; then
+        sudo pacman -S --noconfirm go
+    elif command_exists apt; then
+        sudo apt install -y golang
+    else
+        echo "Error: Package manager not supported for Go installation, Go-based tools can't be installed at this time. Install Go manually."
+        exit 1
+    fi
+}
+
+install_go
 
 # Set environment variables for Go
 # Backup original .bashrc file
