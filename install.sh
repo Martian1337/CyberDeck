@@ -49,7 +49,7 @@ install_go() {
     fi
 }
 
-install_go
+install_go()
 
 # Set environment variables for Go
 # Backup original .bashrc file
