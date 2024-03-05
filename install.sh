@@ -103,7 +103,7 @@ fi
 # Install Naabu
 wget https://github.com/projectdiscovery/naabu/releases/download/v2.2.1/naabu_2.2.1_linux_amd64.zip
 tar -xvf naabu_2.2.1_linux_amd64.zip
-sudo cp naabu-linux-amd64 /usr/local/bin
+sudo cp naabu_2.2.1_linux_amd64.zip /usr/local/bin
 
 # Install GO ready tools: gau, chaos-client and uncover
 sudo go install github.com/lc/gau/v2/cmd/gau@latest
