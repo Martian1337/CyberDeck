@@ -95,10 +95,15 @@ fi
 
 # Recon Tools Installation
 if command_exists pacman; then
-    yay -S massdns libldns naabu --noconfirm
+    yay -S massdns libldns --noconfirm
 else
     install_package massdns libldns-dev naabu
 fi
+
+# Install Naabu
+wget https://github.com/projectdiscovery/naabu/releases/download/v2.2.1/naabu_2.2.1_linux_amd64.zip
+tar -xvf naabu_2.2.1_linux_amd64.zip
+sudo cp naabu-linux-amd64 /usr/local/bin/naabu
 
 # Install GO ready tools: chaos-client and uncover
 sudo go install github.com/projectdiscovery/chaos-client/cmd/chaos@latest
