@@ -53,7 +53,7 @@ install_go()
 
 # Set environment variables for Go
 # Backup original .bashrc file
-sudo cp ~/.bashrc ~/.bashrc_backup
+# sudo cp ~/.bashrc ~/.bashrc_backup
 # Define the lines you want to add
 EXPORT_LINES=(
 "export GOPATH=\$HOME/go"
