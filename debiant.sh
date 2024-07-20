@@ -54,6 +54,9 @@ sudo cp "$GOPATH/bin/uncover" /usr/local/bin
 pipx install bbot
 pip3 install crosslinked
 
+# Install Cracking tools
+sudo apt install hashcat john -y
+
 # Create a directory for recon tools
 mkdir -p recon-tools
 cd recon-tools
@@ -133,6 +136,7 @@ sudo cp "$GOPATH/bin/vaf" /usr/local/bin
 cd ..
 
 # Exploitation tools setup
+
 # Create directory for exploitation tools
 mkdir -p exploitation-tools
 cd exploitation-tools
@@ -168,6 +172,7 @@ git clone https://www.github.com/FluxionNetwork/fluxion.git
 cd fluxion
 sudo ./fluxion.sh -i
 cd ..
+
 
 # Install Docker
 curl -fsSL https://get.docker.com -o get-docker.sh && sh ./get-docker.sh && rm ./get-docker.sh
