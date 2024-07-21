@@ -55,7 +55,7 @@ pipx install bbot
 pip3 install crosslinked
 
 # Install Cracking tools
-sudo apt install hashcat john -y
+sudo apt install hashcat john hydra-gtk -y
 
 # Create a directory for recon tools
 mkdir -p recon-tools
