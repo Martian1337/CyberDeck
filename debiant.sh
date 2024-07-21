@@ -224,7 +224,8 @@ install_vulnscanners() {
     git clone https://github.com/SiriusScan/Sirius.git
     cd Sirius
     docker-compose up
-    sudo apt install openvas
+    cd ..
+    sudo apt install openvas -y
     echo "Vulnerability Scanners installed. Ensure to refer to tool documentation for setup!"
 }
 
