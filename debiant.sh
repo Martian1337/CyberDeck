@@ -38,9 +38,8 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 sudo apt install massdns libldns-dev -y
 
 # Install Naabu
-wget https://github.com/projectdiscovery/naabu/releases/download/v2.2.1/naabu_2.2.1_linux_amd64.zip
-unzip naabu_2.2.1_linux_amd64.zip
-sudo cp naabu /usr/local/bin
+go install -v github.com/projectdiscovery/naabu/v2/cmd/naabu@latest
+sudo cp "$GOPATH/bin/gau" /usr/local/bin
 
 # Install GO ready recon tools tools: gau, chaos-client and uncover
 sudo go install github.com/lc/gau/v2/cmd/gau@latest
@@ -93,11 +92,11 @@ cargo install rustscan
 sudo apt install eyewitness witnessme -y
 
 # Install aquatone
-sudo go install github.com/michenriksen/aquatone@latest
+sudo go install -v github.com/michenriksen/aquatone@latest
 sudo cp "$GOPATH/bin/aquatone" /usr/local/bin
 
 # Install webanalyze
-sudo go install github.com/rverton/webanalyze/cmd/webanalyze@latest
+sudo go install -v github.com/rverton/webanalyze/cmd/webanalyze@latest
 sudo cp "$GOPATH/bin/webanalyze" /usr/local/bin
 
 # Install httpx
@@ -108,6 +107,8 @@ sudo cp "$GOPATH/bin/httpx" /usr/local/bin
 sudo apt install whatweb gobuster dirsearch dirb dirbuster -y
 
 # Install recursebuster, gospider, hakrawler
+sudo go install -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest
+sudo cp "$GOPATH/bin/nuclei" /usr/local/bin
 sudo go install github.com/c-sto/recursebuster@latest
 sudo cp "$GOPATH/bin/recursebuster" /usr/local/bin
 sudo go install github.com/jaeles-project/gospider@latest
@@ -119,7 +120,7 @@ sudo cp "$GOPATH/bin/hakrawler" /usr/local/bin
 cargo install feroxbuster
 
 # Install waybackurls
-sudo go install github.com/tomnomnom/waybackurls@latest
+sudo go install -v github.com/tomnomnom/waybackurls@latest
 sudo cp "$GOPATH/bin/waybackurls" /usr/local/bin
 
 # Parameter analysis tool installation
@@ -129,17 +130,17 @@ sudo apt install arjun -y
 sudo apt install wfuzz ffuf -y
 
 # Install qsfuzz and vaf
-sudo go install github.com/ameenmaali/qsfuzz@latest
+sudo go install -v github.com/ameenmaali/qsfuzz@latest
 sudo cp "$GOPATH/bin/qsfuzz" /usr/local/bin
-sudo go install github.com/daffainfo/vaf@latest
+sudo go install -v github.com/daffainfo/vaf@latest
 sudo cp "$GOPATH/bin/vaf" /usr/local/bin
 cd ..
 
 # Exploitation tools setup
 
 # Create directory for exploitation tools
-mkdir -p exploitation-tools
-cd exploitation-tools
+mkdir -p exploitation
+cd exploitation
 
 # CORS Misconfiguration tool installation
 install_python_package corscanner
