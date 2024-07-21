@@ -239,7 +239,7 @@ install_ad_tools() {
     install_bloodhound
     install_metasploit
     install_trevorspray
-    sudo apt install evil-winrm -y
+    sudo apt install evil-winrm proxychains4 -y
     echo "Active Directory tools setup complete."
 }
 
