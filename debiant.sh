@@ -217,6 +217,18 @@ install_reconftw() {
     echo "reconftw has been successfully installed."
 }
 
+
+install_vulnscanners() {
+    echo "Installing Wapiti, OpenVAS and Sirius"
+    pip install wapiti3
+    git clone https://github.com/SiriusScan/Sirius.git
+    cd Sirius
+    docker-compose up
+    sudo apt install openvas
+    echo "Vulnerability Scanners installed. Ensure to refer to tool documentation for setup!"
+}
+
+
 install_ad_tools() {
     echo "Setting up Active Directory tools..."
     install_empire
@@ -276,9 +288,10 @@ echo "Select the tool(s) to install (larger toolsets):"
 echo "1. Install HTB-Toolkit"
 echo "2. Install HuntKit Docker"
 echo "3. Install ReconFTW"
-echo "4. Install Active Directory tools"
-echo "5. Install All"
-echo "6. Do not install additional tools"
+echo "4. Install Vulnerability scanners"
+echo "5. Install Active Directory tools"
+echo "6. Install All"
+echo "7. Do not install additional tools"
 read -p "Enter your choices separated by spaces (e.g., '1 2 3') or '5' to skip: " choices
 
 
@@ -297,15 +310,19 @@ for choice in "${choices[@]}"; do
             install_reconftw
             ;;
         4)
-            install_ad_tools
+            install_vulnscanners
             ;;
         5)
-            install_htb
-            install_huntkit
-            install_reconftw
             install_ad_tools
             ;;
         6)
+            install_htb
+            install_huntkit
+            install_reconftw
+            install_vulnscanners
+            install_ad_tools
+            ;;
+        7)
             echo "No installations selected."
             ;;
         *)
